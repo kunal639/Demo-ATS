@@ -4,6 +4,7 @@ import fitz  # PyMuPDF
 from docx import Document
 import re
 import io
+import os 
 
 app = FastAPI()
 
@@ -82,8 +83,6 @@ async def parse_resume(file: UploadFile = File(...)):
         await file.close()
 
 if __name__ == "__main__":
-    import uvicorn
-    import os
 
     # Get the port from the environment variable (provided by Render/Railway)
     # Default to 8000 for local development if $PORT is not set
