@@ -83,5 +83,10 @@ async def parse_resume(file: UploadFile = File(...)):
 
 if __name__ == "__main__":
     import uvicorn
-    # Bind to 0.0.0.0 so your Kotlin app can connect via your PC's IP
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    import os
+
+    # Get the port from the environment variable (provided by Render/Railway)
+    # Default to 8000 for local development if $PORT is not set
+    port = int(os.environ.get("PORT", 8000))
+    
+    uvicorn.run("main:app", host="0.0.0.0", port=port)
